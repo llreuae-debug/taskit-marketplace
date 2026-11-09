@@ -386,6 +386,40 @@ export async function sendTaskMessage(
   return msg;
 }
 
+/**
+ * 10. Admin Disputes Resolution
+ */
+export async function getOpenDisputes(): Promise<TaskDispute[]> {
+  if (isSupabaseConfigured) {
+    const { data, error } = await supabase
+      .from('task_disputes')
+      .select('*')
+      .eq('status', 'open')
+      .order('created_at', { ascending: false });
+
+    if (!error && data) return data as TaskDispute[];
+  }
+  return mockDisputesStore.filter((d) => d.status === 'open');
+}
+
+export async function resolveTaskDispute(
+  disputeId: string,
+  resolution: 'release_to_tasker' | 'refund_to_poster',
+  resolutionNotes: string
+): Promise<TaskDispute> {
+  const disp = mockDisputesStore.find((d) => d.id === disputeId);
+  if (!disp) throw new Error('Dispute not found');
+
+  disp.status = 'resolved';
+  disp.resolution_type = resolution === 'release_to_tasker' ? 'full_release' : 'full_refund';
+
+  const task = await getTaskById(disp.task_id);
+  if (task) {
+    task.status = resolution === 'release_to_tasker' ? 'completed' : 'cancelled';
+  }
+  return disp;
+}
+
 export function __resetExecutionStore() {
   mockProofsStore = [];
   mockExtensionsStore = [];

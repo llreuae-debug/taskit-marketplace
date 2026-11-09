@@ -109,3 +109,104 @@ export async function submitMemberKycApplication(
     selfieStoragePath: selfiePath,
   };
 }
+
+export interface KycReviewQueueItem {
+  id: string;
+  user_id: string;
+  full_name: string;
+  document_type: string;
+  id_number_masked: string;
+  status: KycStatus;
+  front_path: string;
+  selfie_path: string;
+  submitted_at: string;
+}
+
+let mockPendingKycList: KycReviewQueueItem[] = [
+  {
+    id: 'kyc-demo-1',
+    user_id: 'usr-unverified-1',
+    full_name: 'Muhammad Haris',
+    document_type: 'cnic',
+    id_number_masked: '35201-*******-1',
+    status: 'under_review',
+    front_path: 'kyc/usr-unverified-1/front.jpg',
+    selfie_path: 'kyc/usr-unverified-1/selfie.jpg',
+    submitted_at: new Date(Date.now() - 3600 * 1000).toISOString(),
+  },
+  {
+    id: 'kyc-demo-2',
+    user_id: 'usr-unverified-2',
+    full_name: 'Ayesha Siddiqua',
+    document_type: 'passport',
+    id_number_masked: 'PK-******42',
+    status: 'under_review',
+    front_path: 'kyc/usr-unverified-2/front.jpg',
+    selfie_path: 'kyc/usr-unverified-2/selfie.jpg',
+    submitted_at: new Date(Date.now() - 7200 * 1000).toISOString(),
+  },
+];
+
+export async function getPendingKycSubmissions(): Promise<KycReviewQueueItem[]> {
+  if (isSupabaseConfigured) {
+    const { data, error } = await supabase
+      .from('kyc_documents')
+      .select('id, user_id, document_type, id_number_masked, status, front_storage_path, selfie_storage_path, created_at, profile:profiles!user_id(full_name)')
+      .eq('status', 'under_review')
+      .order('created_at', { ascending: true });
+
+    if (!error && data) {
+      return data.map((d: any) => ({
+        id: d.id,
+        user_id: d.user_id,
+        full_name: d.profile?.full_name || 'Member',
+        document_type: d.document_type,
+        id_number_masked: d.id_number_masked,
+        status: d.status,
+        front_path: d.front_storage_path,
+        selfie_path: d.selfie_storage_path,
+        submitted_at: d.created_at,
+      }));
+    }
+  }
+  return mockPendingKycList;
+}
+
+export async function adminReviewKyc(
+  kycId: string,
+  reviewerId: string,
+  decision: 'approved' | 'rejected',
+  rejectionReason?: string
+): Promise<{ success: boolean; status: KycStatus }> {
+  if (isSupabaseConfigured) {
+    const { data, error } = await supabase.rpc('admin_review_kyc', {
+      p_kyc_id: kycId,
+      p_decision: decision,
+      p_rejection_reason: rejectionReason || null,
+    });
+    if (error) throw new Error(error.message);
+  }
+
+  const item = mockPendingKycList.find((k) => k.id === kycId);
+  if (item) {
+    item.status = decision;
+    mockPendingKycList = mockPendingKycList.filter((k) => k.id !== kycId);
+  }
+  return { success: true, status: decision };
+}
+
+export function __resetKycQueue() {
+  mockPendingKycList = [
+    {
+      id: 'kyc-demo-1',
+      user_id: 'usr-unverified-1',
+      full_name: 'Muhammad Haris',
+      document_type: 'cnic',
+      id_number_masked: '35201-*******-1',
+      status: 'under_review',
+      front_path: 'kyc/usr-unverified-1/front.jpg',
+      selfie_path: 'kyc/usr-unverified-1/selfie.jpg',
+      submitted_at: new Date(Date.now() - 3600 * 1000).toISOString(),
+    },
+  ];
+}

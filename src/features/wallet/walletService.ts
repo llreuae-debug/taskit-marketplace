@@ -420,6 +420,69 @@ export async function getUserWithdrawals(userId: string): Promise<WithdrawalRequ
   return mockWithdrawals.filter((w) => w.user_id === userId);
 }
 
+/**
+ * 9. Admin Payout Reconciliation
+ */
+export async function getAllWithdrawals(): Promise<WithdrawalRequest[]> {
+  if (isSupabaseConfigured) {
+    const { data, error } = await supabase
+      .from('withdrawals')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (!error && data) return data as WithdrawalRequest[];
+  }
+  return mockWithdrawals;
+}
+
+export async function adminApproveWithdrawal(
+  withdrawalId: string,
+  referenceCode: string
+): Promise<WithdrawalRequest> {
+  const req = mockWithdrawals.find((w) => w.id === withdrawalId);
+  if (!req) throw new Error('Withdrawal request not found');
+
+  req.status = 'completed';
+  req.admin_notes = `Approved with ref: ${referenceCode}`;
+  req.processed_at = new Date().toISOString();
+  return req;
+}
+
+export async function adminRejectWithdrawal(
+  withdrawalId: string,
+  reason: string
+): Promise<WithdrawalRequest> {
+  const req = mockWithdrawals.find((w) => w.id === withdrawalId);
+  if (!req) throw new Error('Withdrawal request not found');
+
+  req.status = 'rejected';
+  req.admin_notes = `Rejected: ${reason}`;
+  req.processed_at = new Date().toISOString();
+
+  // Return amount back to user's wallet
+  const wallet = await getUserWallet(req.user_id, req.currency);
+  wallet.available_balance += req.amount;
+  wallet.total_balance = wallet.available_balance + wallet.escrow_balance;
+
+  return req;
+}
+
+export async function getPlatformFinancialStats(): Promise<{
+  totalHeldEscrow: number;
+  totalWithdrawalsPending: number;
+  totalTransactionsCount: number;
+}> {
+  const allW = await getAllWithdrawals();
+  const pendingW = allW.filter((w) => w.status === 'pending');
+  const totalWAmount = pendingW.reduce((sum, w) => sum + w.amount, 0);
+
+  return {
+    totalHeldEscrow: 50000,
+    totalWithdrawalsPending: totalWAmount,
+    totalTransactionsCount: mockLedger.length,
+  };
+}
+
 export function __resetFinancialStore() {
   mockWallets = {};
   mockLedger = [];
