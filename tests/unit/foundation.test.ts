@@ -40,11 +40,10 @@ describe('Phase 1 — TaskIt Foundation Verification', () => {
   });
 
   test('enforces TaskIt brand colors and 48px minimum accessibility touch target', () => {
-    expect(COLORS.primary.DEFAULT).toBe('#7C3AED');
-    expect(COLORS.lime.DEFAULT).toBe('#A3E635');
-    expect(COLORS.coral.DEFAULT).toBe('#FF5C7A');
-    expect(COLORS.background.dark).toBe('#0F0F14');
-    expect(COLORS.background.light).toBe('#FAFAFC');
+    expect(COLORS.lime.DEFAULT).toBe('#B9FF66');
+    expect(COLORS.ink.DEFAULT).toBe('#191A23');
+    expect(COLORS.greyCard).toBe('#F3F3F3');
+    expect(COLORS.background.dark).toBe('#0E0F14');
     expect(TYPOGRAPHY.minTouchTarget).toBeGreaterThanOrEqual(48);
   });
 

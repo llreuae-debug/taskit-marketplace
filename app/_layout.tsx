@@ -61,6 +61,7 @@ export default function RootLayout() {
           <Stack.Screen name="real-estate/seller-dashboard" options={{ headerShown: false }} />
           <Stack.Screen name="privacy" options={{ headerShown: false }} />
           <Stack.Screen name="admin/index" options={{ headerShown: false }} />
+          <Stack.Screen name="styleguide" options={{ headerShown: false }} />
         </Stack>
       </QueryClientProvider>
     </SafeAreaProvider>
