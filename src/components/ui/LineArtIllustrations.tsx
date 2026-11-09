@@ -192,3 +192,158 @@ export const SparkleIcon: React.FC<{ size?: number; color?: string; stroke?: str
     />
   </Svg>
 );
+
+/**
+ * 6. Real Estate & Modern Architecture Illustration
+ */
+export const RealEstateIllustration: React.FC<IllustrationProps> = ({
+  width = 140,
+  height = 120,
+  color = COLORS.ink.DEFAULT,
+  accent = COLORS.lime.DEFAULT,
+}) => (
+  <Svg width={width} height={height} viewBox="0 0 140 120" fill="none">
+    {/* Sun / Orbit Disk */}
+    <Circle cx="105" cy="35" r="16" fill={accent} stroke={color} strokeWidth="2" />
+    <Circle cx="105" cy="35" r="26" stroke={color} strokeWidth="1" strokeDasharray="3 3" opacity="0.4" />
+
+    {/* Modern House / Building */}
+    <Rect x="20" y="45" width="45" height="55" rx="3" fill="#FFFFFF" stroke={color} strokeWidth="2.5" />
+    <Rect x="55" y="25" width="55" height="75" rx="3" fill="#FFFFFF" stroke={color} strokeWidth="2.5" />
+
+    {/* Lime Roof Accent */}
+    <Path d="M15 45 L42 25 L70 45 Z" fill={accent} stroke={color} strokeWidth="2.5" strokeLinejoin="round" />
+
+    {/* Windows */}
+    <Rect x="28" y="55" width="12" height="12" rx="2" fill={color} />
+    <Rect x="65" y="38" width="14" height="14" rx="2" fill={color} />
+    <Rect x="86" y="38" width="14" height="14" rx="2" fill={color} />
+    <Rect x="65" y="60" width="14" height="14" rx="2" fill={color} />
+    <Rect x="86" y="60" width="14" height="14" rx="2" fill={color} />
+
+    {/* Entrance Door */}
+    <Rect x="28" y="78" width="14" height="22" rx="2" fill={accent} stroke={color} strokeWidth="2" />
+
+    {/* Sparkle */}
+    <Path d="M12 20 L15 12 L18 20 L26 23 L18 26 L15 34 L12 26 L4 23 Z" fill={accent} stroke={color} strokeWidth="1" />
+  </Svg>
+);
+
+/**
+ * 7. Shield & Escrow Protection Illustration
+ */
+export const ShieldLockIllustration: React.FC<IllustrationProps> = ({
+  width = 130,
+  height = 120,
+  color = COLORS.ink.DEFAULT,
+  accent = COLORS.lime.DEFAULT,
+}) => (
+  <Svg width={width} height={height} viewBox="0 0 130 120" fill="none">
+    {/* Shield Base */}
+    <Path
+      d="M65 15 C88 15, 105 22, 105 45 C105 78, 78 98, 65 105 C52 98, 25 78, 25 45 C25 22, 42 15, 65 15 Z"
+      fill={accent}
+      stroke={color}
+      strokeWidth="2.5"
+    />
+    {/* Inner Shield */}
+    <Path
+      d="M65 25 C82 25, 95 31, 95 48 C95 72, 74 88, 65 94 C56 88, 35 72, 35 48 C35 31, 48 25, 65 25 Z"
+      fill="#FFFFFF"
+      stroke={color}
+      strokeWidth="2"
+    />
+    {/* Padlock */}
+    <Rect x="52" y="52" width="26" height="22" rx="4" fill={color} />
+    <Path d="M57 52 V42 C57 37.5, 73 37.5, 73 42 V52" stroke={color} strokeWidth="3" fill="none" />
+    <Circle cx="65" cy="62" r="3" fill={accent} />
+    <Path d="M65 65 V70" stroke={accent} strokeWidth="2" strokeLinecap="round" />
+
+    {/* Orbit sparkles */}
+    <Circle cx="112" cy="30" r="4" fill={color} />
+    <Circle cx="18" cy="75" r="5" fill={accent} stroke={color} strokeWidth="1" />
+  </Svg>
+);
+
+/**
+ * 8. Grocery & Shopping Basket Illustration
+ */
+export const GroceryBasketIllustration: React.FC<IllustrationProps> = ({
+  width = 130,
+  height = 120,
+  color = COLORS.ink.DEFAULT,
+  accent = COLORS.lime.DEFAULT,
+}) => (
+  <Svg width={width} height={height} viewBox="0 0 130 120" fill="none">
+    {/* Basket Handle */}
+    <Path d="M40 50 C40 25, 90 25, 90 50" stroke={color} strokeWidth="2.5" fill="none" strokeDasharray="4 2" />
+
+    {/* Basket Body */}
+    <Path
+      d="M25 50 L35 95 C36 98, 40 100, 44 100 L86 100 C90 100, 94 98, 95 95 L105 50 Z"
+      fill={accent}
+      stroke={color}
+      strokeWidth="2.5"
+      strokeLinejoin="round"
+    />
+    {/* Grid lines */}
+    <Path d="M30 65 L100 65" stroke={color} strokeWidth="1.5" />
+    <Path d="M33 80 L97 80" stroke={color} strokeWidth="1.5" />
+    <Path d="M50 50 L46 100" stroke={color} strokeWidth="1.5" />
+    <Path d="M65 50 L65 100" stroke={color} strokeWidth="1.5" />
+    <Path d="M80 50 L84 100" stroke={color} strokeWidth="1.5" />
+
+    {/* Floating Items */}
+    <Circle cx="50" cy="38" r="10" fill="#FFFFFF" stroke={color} strokeWidth="2" />
+    <Rect x="65" y="30" width="14" height="20" rx="3" fill="#FFFFFF" stroke={color} strokeWidth="2" />
+
+    {/* Sparkle */}
+    <Path d="M110 35 L113 28 L116 35 L123 37 L116 39 L113 46 L110 39 L103 37 Z" fill={accent} stroke={color} strokeWidth="1" />
+  </Svg>
+);
+
+/**
+ * 9. Phone Mockup Illustration with Task Status Card
+ */
+export const PhoneMockupIllustration: React.FC<IllustrationProps> = ({
+  width = 220,
+  height = 280,
+  color = COLORS.ink.DEFAULT,
+  accent = COLORS.lime.DEFAULT,
+}) => (
+  <Svg width={width} height={height} viewBox="0 0 220 280" fill="none">
+    {/* Phone Frame */}
+    <Rect x="25" y="10" width="170" height="260" rx="28" fill="#FFFFFF" stroke={color} strokeWidth="3" />
+    {/* Speaker Ear Notch */}
+    <Rect x="85" y="18" width="50" height="6" rx="3" fill={color} />
+
+    {/* Screen Header Bar */}
+    <Rect x="35" y="36" width="150" height="24" rx="6" fill={color} />
+    <Circle cx="48" cy="48" r="4" fill={accent} />
+    <Rect x="60" y="45" width="40" height="6" rx="3" fill="#FFFFFF" />
+
+    {/* Live Status Map Card */}
+    <Rect x="35" y="68" width="150" height="90" rx="12" fill="#F3F3F3" stroke={color} strokeWidth="1.5" />
+    {/* Road Map Route line */}
+    <Path d="M50 135 C65 110, 80 145, 110 115 C130 95, 140 120, 160 90" stroke={color} strokeWidth="2.5" strokeDasharray="4 3" />
+    {/* Start & End Pins */}
+    <Circle cx="50" cy="135" r="6" fill={color} />
+    <Circle cx="50" cy="135" r="3" fill="#FFFFFF" />
+    <Circle cx="160" cy="90" r="7" fill={accent} stroke={color} strokeWidth="2" />
+
+    {/* In-Transit Tasker Card inside phone */}
+    <Rect x="35" y="166" width="150" height="64" rx="12" fill={accent} stroke={color} strokeWidth="2" />
+    <Circle cx="54" cy="198" r="12" fill="#FFFFFF" stroke={color} strokeWidth="1.5" />
+    <Rect x="74" y="186" width="60" height="7" rx="3" fill={color} />
+    <Rect x="74" y="198" width="80" height="5" rx="2.5" fill={color} opacity="0.7" />
+    <Rect x="74" y="209" width="45" height="12" rx="6" fill={color} />
+
+    {/* Home indicator bar */}
+    <Rect x="80" y="258" width="60" height="4" rx="2" fill={color} opacity="0.4" />
+
+    {/* Floating Sparkles & Stickers outside phone */}
+    <Path d="M8 80 L11 72 L14 80 L22 83 L14 86 L11 94 L8 86 L0 83 Z" fill={accent} stroke={color} strokeWidth="1.2" />
+    <Circle cx="205" cy="140" r="8" fill={accent} stroke={color} strokeWidth="2" />
+    <Circle cx="205" cy="140" r="4" fill={color} />
+  </Svg>
+);
