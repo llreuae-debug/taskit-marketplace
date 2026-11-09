@@ -51,6 +51,7 @@ export default function RootLayout() {
           <Stack.Screen name="tasks/[id]" options={{ headerShown: false }} />
           <Stack.Screen name="tasks/create" options={{ headerShown: false }} />
           <Stack.Screen name="tasks/active/[id]" options={{ headerShown: false }} />
+          <Stack.Screen name="wallet/index" options={{ headerShown: false }} />
           <Stack.Screen name="privacy" options={{ headerShown: false }} />
           <Stack.Screen name="admin/index" options={{ headerShown: false }} />
         </Stack>

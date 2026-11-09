@@ -86,6 +86,12 @@ export default function ProfileTabScreen() {
           </Text>
 
           <PillButton
+            label="💳 Task Wallet & Ledger (Escrow & Payouts)"
+            variant="lime"
+            onPress={() => router.push('/wallet')}
+          />
+
+          <PillButton
             label="🛡️ Complete 5-Step KYC Verification Wizard"
             variant="primary"
             onPress={() => router.push('/(auth)/kyc-wizard')}
