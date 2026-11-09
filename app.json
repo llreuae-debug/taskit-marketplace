@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "TaskIt",
+    "slug": "taskit",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "taskit",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.taskit.marketplace"
+    },
+    "android": {
+      "package": "com.taskit.marketplace",
+      "adaptiveIcon": {
+        "backgroundColor": "#7C3AED"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-localization",
+      "expo-font"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "supportsRTL": true
+    }
+  }
+}

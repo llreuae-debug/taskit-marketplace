@@ -1,0 +1,79 @@
+{
+  "brand": {
+    "name": "TaskIt ⚡",
+    "tagline": "Просто TaskIt. ⚡",
+    "subtitle": "Единая биржа поручений и недвижимости"
+  },
+  "nav": {
+    "home": "Главная",
+    "tasks": "Задания",
+    "realEstate": "Недвижимость",
+    "create": "Создать",
+    "chats": "Чаты",
+    "profile": "Профиль",
+    "admin": "Админ"
+  },
+  "common": {
+    "continue": "Продолжить",
+    "cancel": "Отмена",
+    "save": "Save",
+    "submit": "Submit",
+    "search": "Поиск...",
+    "filter": "Filters",
+    "verified": "Проверено",
+    "pending": "Pending",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "loading": "Loading...",
+    "retry": "Retry",
+    "offline": "You are currently offline",
+    "switchLanguage": "Язык",
+    "switchTheme": "Theme",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "rtlActive": "Right-to-Left (RTL) Active"
+  },
+  "auth": {
+    "welcomeTitle": "One Account. Two Powerful Marketplaces.",
+    "welcomeSubtitle": "Post tasks, earn money, or buy, sell & rent verified properties.",
+    "loginTitle": "Sign In to TaskIt ⚡",
+    "registerTitle": "Create Verified Member Account",
+    "phoneLabel": "Primary Mobile Number",
+    "phonePlaceholder": "+92 300 1234567",
+    "otpLabel": "6-Digit Verification Code",
+    "sendOtp": "Send OTP Code",
+    "verifyOtp": "Verify & Continue",
+    "guestBrowse": "Browse Marketplaces as Guest",
+    "signOut": "Sign Out",
+    "kycRequiredBanner": "Identity Verification (KYC) is required before posting tasks, accepting tasks, or publishing properties."
+  },
+  "home": {
+    "greeting": "Добро пожаловать в TaskIt ⚡",
+    "activeMode": "Active Marketplace Experience",
+    "taskMarketplaceTitle": "Task Marketplace ⚡",
+    "taskMarketplaceDesc": "Delegate errands, repairs, deliveries, or earn money completing local & digital tasks.",
+    "realEstateTitle": "Real Estate Marketplace 🏡",
+    "realEstateDesc": "Buy, sell, rent & discover verified houses, plots, apartments & commercial developments.",
+    "quickActions": "Quick Actions",
+    "postTaskCta": "Post a Task ⚡",
+    "findWorkCta": "Find Tasks & Earn",
+    "listPropertyCta": "List a Property 🏡",
+    "searchPropertyCta": "Explore Properties",
+    "statsTasksCount": "{{count}} Active Task",
+    "statsTasksCount_other": "{{count}} Active Tasks",
+    "statsPropertiesCount": "{{count}} Verified Property",
+    "statsPropertiesCount_other": "{{count}} Verified Properties"
+  },
+  "createHub": {
+    "title": "What would you like to create?",
+    "subtitle": "Use your single TaskIt member account across both marketplaces.",
+    "postTask": "Post a Task ⚡",
+    "postTaskDesc": "Set your price, deadline & escrow — get it done in 4 simple steps.",
+    "sellProperty": "Sell a Property 🏡",
+    "sellPropertyDesc": "List houses, plots, apartments or commercial units for sale.",
+    "rentProperty": "Rent a Property 🔑",
+    "rentPropertyDesc": "Find verified tenants for residential or commercial properties.",
+    "newProject": "List a New Development 🏗️",
+    "newProjectDesc": "Showcase housing societies, high-rises & developer projects."
+  }
+}

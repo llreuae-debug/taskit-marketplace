@@ -1,0 +1,79 @@
+{
+  "brand": {
+    "name": "تاسك إت ⚡",
+    "tagline": "فقط تاسك إت. ⚡",
+    "subtitle": "سوق المهام الموحد وبوابة العقارات"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "tasks": "المهام",
+    "realEstate": "العقارات",
+    "create": "إنشاء",
+    "chats": "المحادثات",
+    "profile": "الملف الشخصي",
+    "admin": "لوحة الإدارة"
+  },
+  "common": {
+    "continue": "متابعة",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "submit": "إرسال",
+    "search": "بحث...",
+    "filter": "تصفية",
+    "verified": "موثق",
+    "pending": "Pending",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "loading": "Loading...",
+    "retry": "Retry",
+    "offline": "You are currently offline",
+    "switchLanguage": "اللغة",
+    "switchTheme": "Theme",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "rtlActive": "الوضع من اليمين إلى اليسار نشط"
+  },
+  "auth": {
+    "welcomeTitle": "حساب واحد. سوقان قويان.",
+    "welcomeSubtitle": "Post tasks, earn money, or buy, sell & rent verified properties.",
+    "loginTitle": "تسجيل الدخول إلى تاسك إت ⚡",
+    "registerTitle": "Create Verified Member Account",
+    "phoneLabel": "Primary Mobile Number",
+    "phonePlaceholder": "+92 300 1234567",
+    "otpLabel": "6-Digit Verification Code",
+    "sendOtp": "Send OTP Code",
+    "verifyOtp": "Verify & Continue",
+    "guestBrowse": "Browse Marketplaces as Guest",
+    "signOut": "Sign Out",
+    "kycRequiredBanner": "Identity Verification (KYC) is required before posting tasks, accepting tasks, or publishing properties."
+  },
+  "home": {
+    "greeting": "السلام عليكم، مرحباً بك في تاسك إت ⚡",
+    "activeMode": "Active Marketplace Experience",
+    "taskMarketplaceTitle": "سوق المهام ⚡",
+    "taskMarketplaceDesc": "Delegate errands, repairs, deliveries, or earn money completing local & digital tasks.",
+    "realEstateTitle": "سوق العقارات 🏡",
+    "realEstateDesc": "Buy, sell, rent & discover verified houses, plots, apartments & commercial developments.",
+    "quickActions": "Quick Actions",
+    "postTaskCta": "Post a Task ⚡",
+    "findWorkCta": "Find Tasks & Earn",
+    "listPropertyCta": "List a Property 🏡",
+    "searchPropertyCta": "Explore Properties",
+    "statsTasksCount": "{{count}} Active Task",
+    "statsTasksCount_other": "{{count}} Active Tasks",
+    "statsPropertiesCount": "{{count}} Verified Property",
+    "statsPropertiesCount_other": "{{count}} Verified Properties"
+  },
+  "createHub": {
+    "title": "ماذا تريد أن تنشئ؟",
+    "subtitle": "Use your single TaskIt member account across both marketplaces.",
+    "postTask": "انشر مهمة ⚡",
+    "postTaskDesc": "Set your price, deadline & escrow — get it done in 4 simple steps.",
+    "sellProperty": "بيع عقار 🏡",
+    "sellPropertyDesc": "List houses, plots, apartments or commercial units for sale.",
+    "rentProperty": "تأجير عقار 🔑",
+    "rentPropertyDesc": "Find verified tenants for residential or commercial properties.",
+    "newProject": "List a New Development 🏗️",
+    "newProjectDesc": "Showcase housing societies, high-rises & developer projects."
+  }
+}
