@@ -253,14 +253,19 @@ export default function TaskDetailsScreen() {
           </View>
         )}
 
-        {isAcceptedByMe && (
-          <SurfaceCard accentBorder="lime" style={{ gap: 8 }}>
+        {task.status !== 'open' && (
+          <SurfaceCard accentBorder="lime" style={{ gap: 10 }}>
             <Text style={{ color: COLORS.lime.DEFAULT, fontWeight: '800', fontSize: 16 }}>
-              ✓ You are assigned to this task!
+              ⚡ Task In Active Execution Lifecycle
             </Text>
             <Text style={{ color: subTextColor, fontSize: 13 }}>
-              Proceed with execution. Upon finishing, submit photo proof and ask the poster for the 4-digit completion code.
+              Track live countdown, submit/approve proof photos, enter the 4-digit completion code, or request time extensions.
             </Text>
+            <PillButton
+              label="Open Execution Mission Control 🚀"
+              variant="lime"
+              onPress={() => router.push({ pathname: '/tasks/active/[id]', params: { id: task.id } })}
+            />
           </SurfaceCard>
         )}
 
