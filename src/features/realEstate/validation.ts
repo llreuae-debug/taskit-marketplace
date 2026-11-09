@@ -1,5 +1,58 @@
 import { z } from 'zod';
-import { PropertyTypeCategory, PropertySizeUnit } from '../../types/realEstate';
+import { PropertyTypeCategory, PropertySizeUnit, PropertyListingType } from '../../types/realEstate';
+
+export const LISTING_TYPES: PropertyListingType[] = [
+  'for_sale',
+  'for_rent',
+  'wanted_to_buy',
+  'wanted_to_rent',
+  'commercial_sale',
+  'commercial_rental',
+  'plot_sale',
+  'new_project',
+  'development_project',
+];
+
+export const PROPERTY_TYPES: PropertyTypeCategory[] = [
+  'house',
+  'apartment',
+  'plot_residential',
+  'plot_commercial',
+  'shop',
+  'office',
+  'building',
+  'agricultural_land',
+  'industrial_property',
+  'penthouse',
+  'villa',
+];
+
+export const SIZE_UNITS: PropertySizeUnit[] = [
+  'marla',
+  'kanal',
+  'sq_ft',
+  'sq_yd',
+  'acres',
+  'sq_m',
+];
+
+export const REAL_ESTATE_CATEGORIES = [
+  { id: '1', name: 'Buy Property', slug: 'buy-property' },
+  { id: '2', name: 'Rent Property', slug: 'rent-property' },
+  { id: '3', name: 'Commercial', slug: 'commercial' },
+  { id: '4', name: 'Plots & Land', slug: 'plots-land' },
+  { id: '5', name: 'Residential', slug: 'residential' },
+  { id: '6', name: 'Houses', slug: 'houses' },
+  { id: '7', name: 'Apartments & Flats', slug: 'apartments' },
+  { id: '8', name: 'Shops & Showrooms', slug: 'shops' },
+  { id: '9', name: 'Offices & Co-working', slug: 'offices' },
+  { id: '10', name: 'Agricultural Land', slug: 'agricultural' },
+  { id: '11', name: 'Industrial Property', slug: 'industrial' },
+  { id: '12', name: 'Penthouses & Luxury', slug: 'penthouses' },
+  { id: '13', name: 'Vacation Homes & Farmhouses', slug: 'farmhouses' },
+  { id: '14', name: 'New Housing Projects', slug: 'new-projects' },
+  { id: '15', name: 'Property Agents & Agencies', slug: 'agents' },
+];
 
 // Property types that require or support residential rooms
 export const RESIDENTIAL_ROOM_TYPES: PropertyTypeCategory[] = [
@@ -81,6 +134,8 @@ export const propertyCreationSchema = z
     bathrooms: z.number().int().min(0).optional().nullable(),
     floors: z.number().int().min(0).optional().nullable(),
     parkingSpaces: z.number().int().min(0).optional().nullable(),
+    amenities: z.array(z.string()).optional().default([]),
+    yearBuilt: z.number().int().min(1800).max(2100).optional().nullable(),
     furnishingStatus: z.enum(['unfurnished', 'semi_furnished', 'furnished']).default('unfurnished'),
     constructionStatus: z.enum(['ready', 'under_construction', 'off_plan']).default('ready'),
     ownershipStatus: z.enum(['freehold', 'leasehold', 'power_of_attorney']).default('freehold'),
@@ -103,7 +158,7 @@ export const propertyCreationSchema = z
     }
   );
 
-export type PropertyCreationInput = z.infer<typeof propertyCreationSchema>;
+export type PropertyCreationInput = z.input<typeof propertyCreationSchema>;
 
 // Property Inquiry / Offer Schema
 export const propertyInquirySchema = z.object({

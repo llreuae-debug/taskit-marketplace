@@ -52,7 +52,11 @@ export default function CreateHubScreen() {
           <Text style={[styles.optionDesc, { color: subTextColor }]}>
             {t('createHub.sellPropertyDesc')}
           </Text>
-          <PillButton label={t('createHub.sellProperty')} variant="lime" onPress={() => {}} />
+          <PillButton
+            label={t('createHub.sellProperty')}
+            variant="lime"
+            onPress={() => router.push('/properties/create')}
+          />
         </SurfaceCard>
 
         <SurfaceCard accentBorder="lime" style={styles.optionCard}>
@@ -62,7 +66,11 @@ export default function CreateHubScreen() {
           <Text style={[styles.optionDesc, { color: subTextColor }]}>
             {t('createHub.rentPropertyDesc')}
           </Text>
-          <PillButton label={t('createHub.rentProperty')} variant="outline" onPress={() => {}} />
+          <PillButton
+            label={t('createHub.rentProperty')}
+            variant="outline"
+            onPress={() => router.push('/properties/create')}
+          />
         </SurfaceCard>
 
         <SurfaceCard style={styles.optionCard}>
@@ -72,7 +80,11 @@ export default function CreateHubScreen() {
           <Text style={[styles.optionDesc, { color: subTextColor }]}>
             {t('createHub.newProjectDesc')}
           </Text>
-          <PillButton label={t('createHub.newProject')} variant="outline" onPress={() => {}} />
+          <PillButton
+            label={t('createHub.newProject')}
+            variant="outline"
+            onPress={() => router.push('/properties/create')}
+          />
         </SurfaceCard>
       </ScrollView>
     </SafeAreaView>
