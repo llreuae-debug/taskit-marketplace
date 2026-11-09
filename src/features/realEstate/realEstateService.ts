@@ -7,6 +7,8 @@ import {
   PropertyViewingItem,
   PropertyProjectItem,
   PropertyVerificationStatus,
+  ViewingAppointmentStatus,
+  PropertyInquiryStatus,
 } from '../../types/realEstate';
 import { PropertyCreationInput, convertToSquareFeet } from './validation';
 
@@ -605,6 +607,155 @@ export async function getPropertyProjects(): Promise<PropertyProjectItem[]> {
     }
   }
   return mockProjectsStore;
+}
+
+/**
+ * 11. Buyer Operations: Inquiries & Viewings
+ */
+export async function getBuyerInquiries(buyerId: string): Promise<PropertyInquiryItem[]> {
+  if (isSupabaseConfigured) {
+    const { data, error } = await supabase
+      .from('property_inquiries')
+      .select('*, property:properties(*)')
+      .eq('buyer_id', buyerId)
+      .order('created_at', { ascending: false });
+
+    if (!error && data) return data as PropertyInquiryItem[];
+  }
+  return mockInquiriesStore.filter((inq) => inq.buyer_id === buyerId);
+}
+
+export async function getBuyerViewings(buyerId: string): Promise<PropertyViewingItem[]> {
+  if (isSupabaseConfigured) {
+    const { data, error } = await supabase
+      .from('property_viewings')
+      .select('*, property:properties(*)')
+      .eq('buyer_id', buyerId)
+      .order('scheduled_at', { ascending: true });
+
+    if (!error && data) return data as PropertyViewingItem[];
+  }
+  return mockViewingsStore.filter((v) => v.buyer_id === buyerId);
+}
+
+/**
+ * 12. Seller Operations: Listings, Inquiries & Viewing Requests
+ */
+export async function getSellerProperties(sellerId: string): Promise<PropertyItem[]> {
+  if (isSupabaseConfigured) {
+    const { data, error } = await supabase
+      .from('properties')
+      .select('*, media:property_media(*)')
+      .eq('owner_id', sellerId)
+      .order('created_at', { ascending: false });
+
+    if (!error && data) return data as PropertyItem[];
+  }
+  return mockPropertiesStore.filter((p) => p.owner_id === sellerId);
+}
+
+export async function getSellerInquiries(sellerId: string): Promise<PropertyInquiryItem[]> {
+  if (isSupabaseConfigured) {
+    const { data, error } = await supabase
+      .from('property_inquiries')
+      .select('*, property:properties(*), buyer:profiles!buyer_id(full_name, avatar_url, phone)')
+      .eq('seller_id', sellerId)
+      .order('created_at', { ascending: false });
+
+    if (!error && data) return data as PropertyInquiryItem[];
+  }
+  return mockInquiriesStore.filter((inq) => inq.seller_id === sellerId);
+}
+
+export async function getSellerViewings(sellerId: string): Promise<PropertyViewingItem[]> {
+  if (isSupabaseConfigured) {
+    const { data, error } = await supabase
+      .from('property_viewings')
+      .select('*, property:properties(*), buyer:profiles!buyer_id(full_name, avatar_url, phone)')
+      .eq('seller_id', sellerId)
+      .order('scheduled_at', { ascending: true });
+
+    if (!error && data) return data as PropertyViewingItem[];
+  }
+  return mockViewingsStore.filter((v) => v.seller_id === sellerId);
+}
+
+export async function updateViewingStatus(
+  viewingId: string,
+  newStatus: ViewingAppointmentStatus,
+  rescheduledAt?: string
+): Promise<PropertyViewingItem> {
+  if (isSupabaseConfigured) {
+    const { data, error } = await supabase
+      .from('property_viewings')
+      .update({
+        status: newStatus,
+        scheduled_at: rescheduledAt || undefined,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', viewingId)
+      .select('*, property:properties(*)')
+      .single();
+
+    if (!error && data) return data as PropertyViewingItem;
+  }
+
+  const viewing = mockViewingsStore.find((v) => v.id === viewingId);
+  if (!viewing) throw new Error('Viewing appointment not found');
+  viewing.status = newStatus;
+  if (rescheduledAt) {
+    viewing.scheduled_at = rescheduledAt;
+  }
+  return viewing;
+}
+
+export async function respondToInquiry(
+  inquiryId: string,
+  newStatus: PropertyInquiryStatus,
+  counterPrice?: number
+): Promise<PropertyInquiryItem> {
+  if (isSupabaseConfigured) {
+    const { data, error } = await supabase
+      .from('property_inquiries')
+      .update({
+        status: newStatus,
+        offer_price: counterPrice !== undefined ? counterPrice : undefined,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', inquiryId)
+      .select('*, property:properties(*)')
+      .single();
+
+    if (!error && data) return data as PropertyInquiryItem;
+  }
+
+  const inquiry = mockInquiriesStore.find((i) => i.id === inquiryId);
+  if (!inquiry) throw new Error('Inquiry not found');
+  inquiry.status = newStatus;
+  if (counterPrice !== undefined) {
+    inquiry.offer_price = counterPrice;
+  }
+  return inquiry;
+}
+
+export async function getSellerAnalytics(sellerId: string): Promise<{
+  totalListings: number;
+  activeListings: number;
+  totalViews: number;
+  totalInquiries: number;
+  totalViewings: number;
+}> {
+  const properties = await getSellerProperties(sellerId);
+  const inquiries = await getSellerInquiries(sellerId);
+  const viewings = await getSellerViewings(sellerId);
+
+  return {
+    totalListings: properties.length,
+    activeListings: properties.filter((p) => p.listing_status === 'active').length,
+    totalViews: properties.reduce((acc, p) => acc + (p.views_count || 0), 0),
+    totalInquiries: inquiries.length,
+    totalViewings: viewings.length,
+  };
 }
 
 export function __resetRealEstateStore() {

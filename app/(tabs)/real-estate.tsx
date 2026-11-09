@@ -5,6 +5,7 @@ import {
   ScrollView,
   RefreshControl,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -138,6 +139,28 @@ export default function RealEstateTabScreen() {
           </View>
         </View>
 
+        {/* Portal Shortcuts Ribbon */}
+        <View style={styles.portalRibbon}>
+          <TouchableOpacity
+            style={[styles.portalChip, { backgroundColor: isDark ? '#27272A' : '#E4E4E7' }]}
+            onPress={() => router.push('/properties/projects')}
+          >
+            <Text style={[styles.portalChipText, { color: textColor }]}>🌆 New Projects</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.portalChip, { backgroundColor: isDark ? '#27272A' : '#E4E4E7' }]}
+            onPress={() => router.push('/real-estate/buyer-dashboard')}
+          >
+            <Text style={[styles.portalChipText, { color: textColor }]}>🏡 Buyer Hub</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.portalChip, { backgroundColor: isDark ? '#27272A' : '#E4E4E7' }]}
+            onPress={() => router.push('/real-estate/seller-dashboard')}
+          >
+            <Text style={[styles.portalChipText, { color: textColor }]}>📈 Seller Hub</Text>
+          </TouchableOpacity>
+        </View>
+
         {actionNotice && (
           <SurfaceCard accentBorder="lime" style={{ padding: 12 }}>
             <Text style={{ color: COLORS.lime.DEFAULT, fontWeight: '800' }}>
@@ -222,4 +245,7 @@ const styles = StyleSheet.create({
   topBtn: { minHeight: 38, paddingHorizontal: 12, paddingVertical: 4 },
   gridContainer: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' },
   listContainer: { gap: 2 },
+  portalRibbon: { flexDirection: 'row', gap: 8, marginTop: 4 },
+  portalChip: { paddingHorizontal: 12, paddingVertical: 8, borderRadius: 20 },
+  portalChipText: { fontSize: 12, fontWeight: '700' },
 });

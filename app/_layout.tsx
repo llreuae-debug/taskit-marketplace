@@ -56,6 +56,9 @@ export default function RootLayout() {
           <Stack.Screen name="properties/create" options={{ headerShown: false }} />
           <Stack.Screen name="properties/compare" options={{ headerShown: false }} />
           <Stack.Screen name="properties/saved" options={{ headerShown: false }} />
+          <Stack.Screen name="properties/projects" options={{ headerShown: false }} />
+          <Stack.Screen name="real-estate/buyer-dashboard" options={{ headerShown: false }} />
+          <Stack.Screen name="real-estate/seller-dashboard" options={{ headerShown: false }} />
           <Stack.Screen name="privacy" options={{ headerShown: false }} />
           <Stack.Screen name="admin/index" options={{ headerShown: false }} />
         </Stack>

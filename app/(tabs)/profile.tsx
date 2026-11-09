@@ -91,6 +91,21 @@ export default function ProfileTabScreen() {
             onPress={() => router.push('/wallet')}
           />
 
+          <View style={{ flexDirection: 'row', gap: 10 }}>
+            <PillButton
+              label="🏡 Buyer Hub"
+              variant="outline"
+              style={{ flex: 1 }}
+              onPress={() => router.push('/real-estate/buyer-dashboard')}
+            />
+            <PillButton
+              label="📈 Seller Hub"
+              variant="outline"
+              style={{ flex: 1 }}
+              onPress={() => router.push('/real-estate/seller-dashboard')}
+            />
+          </View>
+
           <PillButton
             label="🛡️ Complete 5-Step KYC Verification Wizard"
             variant="primary"
